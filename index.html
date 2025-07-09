@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>কালকে রেজাল্ট 🙃</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: #ffe6e6;
+      overflow: hidden;
+    }
+
+    .crying-emoji {
+      position: absolute;
+      font-size: 40px;
+      animation: float 10s linear infinite;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-120vh) rotate(360deg); }
+    }
+
+    .center-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      text-align: center;
+      color: #ff3399;
+    }
+
+    .center-box h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    .center-box p {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .countdown {
+      font-size: 2em;
+      color: #660033;
+      background: #fff0f5;
+      padding: 10px 20px;
+      border-radius: 12px;
+      display: inline-block;
+      box-shadow: 2px 2px 10px #88888840;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating crying emojis -->
+  <script>
+    for (let i = 0; i < 40; i++) {
+      const emoji = document.createElement('div');
+      emoji.classList.add('crying-emoji');
+      emoji.textContent = '😭';
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.animationDuration = (5 + Math.random() * 10) + 's';
+      emoji.style.fontSize = (30 + Math.random() * 30) + 'px';
+      document.body.appendChild(emoji);
+    }
+  </script>
+
+  <!-- Center text with countdown -->
+  <div class="center-box">
+    <h1>আজকে রেজাল্ট 🙃</h1>
+    <p>— মিসবাহ হাসান</p>
+    <div class="countdown" id="countdown">লোডিং হচ্ছে...</div>
+  </div>
+
+  <!-- Countdown Script -->
+  <script>
+    function updateCountdown() {
+      const now = new Date();
+      const target = new Date();
+      target.setDate(target.getDate() + 1); // Tomorrow
+      target.setHours(14, 0, 0, 0); // 2:00 PM
+
+      const diff = target - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "😬 হয়ে গেছে ভাই...";
+        return;
+      }
+
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = 
+        `⏳ বাকি: ${hours} ঘণ্টা ${minutes} মিনিট ${seconds} সেকেন্ড`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>
